@@ -1,0 +1,173 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #1e1e1e;
+  color: white;
+}
+
+canvas {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../imgs/backgroundJogo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Estilo compartilhado para todos os painéis */
+#startPanel,
+#leaderboardPanel,
+#confirmExit,
+#gameOverPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../imgs/bgNuvens.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  gap: 20px;
+}
+
+#leaderboardPanel,
+#confirmExit,
+#gameOverPanel {
+  display: none;
+}
+
+#startPanel input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #00aaff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #008ecc;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* ✅ NOVO: Caixa semi-transparente em todos os menus */
+.panel-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+#pauseMenuPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../imgs/bgNuvens.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  gap: 20px;
+}
+
+#characterSelectPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../imgs/bgNuvens.png');
+  background-size: cover;
+  background-position: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.character-card:hover {
+  transform: scale(1.05);
+}
+
+.character-img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.character-imgFEBRAO {
+  width: 100px;
+  height: 100px;
+  margin-bottom: -10px;
+}
+
+.character-imgGOBLIN {
+  width: 50px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+#musicToggleBtn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10000;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3); /* cor preta semi-transparente */
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* efeito blur igual aos outros painéis */
+  -webkit-backdrop-filter: blur(4px); /* para compatibilidade com Safari */
+}
+

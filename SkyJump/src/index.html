@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Sky Jump</title>
+  <link rel="icon" type="image/png" href="../imgs/sapo.png" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <audio id="bgMusic" src="../sfx/bgMusic-Cities-Instrumental-Throttle.mp3" preload="auto"></audio>
+  <audio id="buttonClickSound" src="../sfx/buttonClick.mp3" preload="auto"></audio>
+  <audio id="playSound" src="../sfx/gameStart.mp3" preload="auto"></audio>
+
+  <style>
+    /* Indicador de mute */
+    #muteIndicator {
+      position: fixed;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      /* mesmo tamanho do score */
+      user-select: none;
+      pointer-events: none;
+      text-shadow: 2px 2px 4px black;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 2s;
+      top: 50px;
+      left: 20px;
+      /* Mesmo sombra da caixa do score para uniformizar */
+      /* Já está text-shadow: 2px 2px 4px black; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Painel Inicial -->
+  <div id="startPanel">
+    <div class="panel-box">
+      <h1>Sky Jump</h1>
+      <input type="text" id="nickname" placeholder="Enter your nickname" maxlength="10" autofocus />
+      <button id="playBtn" onclick="startGame()">Play</button>
+      <button id="selectCharacterBtn" onclick="openCharacterSelect()"> Select Character</button>
+      <button onclick="showLeaderboard()">Leaderboard</button>
+    </div>
+  </div>
+
+  <!-- Painel Leaderboard -->
+  <div id="leaderboardPanel">
+    <div class="panel-box">
+      <h2>Top 10 Scores</h2>
+      <ul id="leaderboard"></ul>
+      <button onclick="hideLeaderboard()">Back</button>
+    </div>
+  </div>
+
+  <!-- Confirmação de Saída -->
+  <div id="confirmExit">
+    <div class="panel-box">
+      <p>Do you want to return to the main menu?</p>
+      <button onclick="exitToMenu()">Yes</button>
+      <button onclick="resumeGame()">No</button>
+    </div>
+  </div>
+
+  <!-- Game Over -->
+  <div id="gameOverPanel">
+    <div class="panel-box">
+      <h2>Game Over</h2>
+      <p>Your score: <span id="finalScore">0</span></p>
+      <button onclick="exitToMenu()">Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- Menu de Pausa -->
+  <div id="pauseMenuPanel">
+    <div class="panel-box">
+      <h2>Game Paused</h2>
+      <p>Do you want to go back to the Main Menu?</p>
+      <button id="confirmExitBtn">Yes</button>
+      <button id="resumeGameBtn">No</button>
+    </div>
+  </div>
+
+  <!-- Indicador de mute -->
+  <div id="muteIndicator">Press Ctrl + M to mute/unmute</div>
+
+  <!-- Menu de Seleção de Personagem -->
+  <div id="characterSelectPanel">
+    <div class="panel-box">
+      <h2>Choose your Character</h2>
+
+      <div id="characterOptions" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <div class="character-card" data-character="sapo">
+          <img src="../imgs/sapo.png" alt="Sapo" class="character-img">
+          <button data-id="personagem1" onclick="selecionarSapo() " disabled>Selected</button>
+        </div>
+        <div class="character-card" data-character="chatzao">
+          <img src="../imgs/chatzao.png" alt="ChatGPT" class="character-img">
+          <button data-id="personagem2" onclick="selecionarChatGPT()">Select</button>
+        </div>
+        <div class="character-card" data-character="febrao">
+          <img src="../imgs/febrao.png" alt="Febras" class="character-imgFEBRAO">
+          <button data-id="personagem3" onclick="selecionarFebras()">Select</button>
+        </div>
+        <div class="character-card" data-character="goblinzao">
+          <img src="../imgs/goblinzao.png" alt="Goblin" class="character-imgGOBLIN">
+          <button data-id="personagem4" onclick="selecionarGoblin()">Select</button>
+        </div>
+        <div class="character-card" data-character="fredzao">
+          <img src="../imgs/fredzao.JPG" alt="Frederico" class="character-img">
+          <button data-id="personagem5" onclick="selecionarFred()">Select</button>
+        </div>
+      </div>
+      <br>
+      <button onclick="closeCharacterSelect()">Back to Menu</button>
+    </div>
+  </div>
+
+  <button onclick="toggleMute()" id="musicToggleBtn">🔇</button>
+
+
+  <!-- Jogo -->
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="../src/game.js"></script>
+
+</body>
+
+</html>
